@@ -651,7 +651,7 @@
 
     const dataHandler = {
       onDataChanged(data) {
-        console.log('     Data received from Canva Sheet:', data.length, 'records');
+        console.log('���� Data received from Canva Sheet:', data.length, 'records');
         appData = data;
         
         updateLoginIcon();
@@ -698,7 +698,7 @@
 
         // Initialize Element SDK
         if (window.elementSdk) {
-          console.log('   Initializing Element SDK...');
+          console.log('�� Initializing Element SDK...');
           await window.elementSdk.init({
             defaultConfig: defaultConfig,
             onConfigChange: onConfigChange,
@@ -817,7 +817,7 @@
     function showToast(message, type = 'success') {
       const toast = document.createElement('div');
       toast.className = `toast ${type}`;
-      const icons = { success: '✅', error: '❌', warning: '     ️', info: 'ℹ️' };
+      const icons = { success: '✅', error: '❌', warning: '�����️', info: 'ℹ️' };
       toast.innerHTML = `
         <span style="font-size: 20px;">${icons[type]}</span>
         <span style="flex: 1; font-weight: 700;">${message}</span>
@@ -984,7 +984,7 @@
             </div>
 
             <div class="stat-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white;">
-              <div class="stat-icon" style="background: rgba(255,255,255,0.2);">      </div>
+              <div class="stat-icon" style="background: rgba(255,255,255,0.2);">������</div>
               <div class="stat-content">
                 <p class="stat-label" style="color: rgba(255,255,255,0.9);">Total Hasil</p>
                 <p class="stat-value" style="color: white;">${results.length}</p>
@@ -1055,7 +1055,7 @@
             </div>
 
             <div class="stat-card" style="background: linear-gradient(135deg, #10b981 0%, #059669 100%); color: white;">
-              <div class="stat-icon" style="background: rgba(255,255,255,0.2);">  </div>
+              <div class="stat-icon" style="background: rgba(255,255,255,0.2);">��</div>
               <div class="stat-content">
                 <p class="stat-label" style="color: rgba(255,255,255,0.9);">Rata-rata Nilai</p>
                 <p class="stat-value" style="color: white;">${avgScore}</p>
@@ -1365,7 +1365,6 @@
                   <option value="Seni Budaya dan Prakarya">Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah">Bahasa Daerah</option>
                 </select>
-                `}
               </div>
 
               <div class="form-group">
@@ -1407,7 +1406,7 @@
                 Batal
               </button>
               <button type="submit" class="btn btn-success" style="flex: 1;" id="saveUserBtn">
-                      Simpan
+                ����� Simpan
               </button>
             </div>
           </form>
@@ -1550,7 +1549,6 @@
                   <option value="Seni Budaya dan Prakarya">Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah">Bahasa Daerah</option>
                 </select>
-                `}
               </div>
             </div>
 
@@ -1683,7 +1681,7 @@
       modal.innerHTML = `
         <div class="modal-content" style="max-width: 600px;">
           <div class="modal-header">
-            <h2 class="modal-title">✏   Edit Pengguna</h2>
+            <h2 class="modal-title">✏�� Edit Pengguna</h2>
             <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">×</button>
           </div>
 
@@ -1881,7 +1879,7 @@
       } else {
         showToast('Gagal menghapus pengguna', 'error');
         btn.disabled = false;
-        btn.innerHTML = '🗑              Hapus';
+        btn.innerHTML = '🗑������������� Hapus';
       }
     }
 
@@ -1951,7 +1949,7 @@
 
       const questions = appData.filter(q => q.type === 'question');
       const myQuestions = currentUser.role === 'guru' 
-        ? questions.filter(q => q.question_subject === currentUser.subject)
+        ? questions.filter(q => q.question_created_by === currentUser.username)
         : questions;
 
       content.innerHTML = `
@@ -2031,7 +2029,6 @@
                   <option value="Seni Budaya dan Prakarya">Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah">Bahasa Daerah</option>
                 </select>
-                `}
               </div>
 
               <div>
@@ -2076,7 +2073,7 @@
       if (questionsToRender.length === 0) {
         return `
           <div class="empty-state">
-            <div class="empty-icon">  </div>
+            <div class="empty-icon">��</div>
             <p class="empty-text">Belum ada soal dibuat</p>
           </div>
         `;
@@ -2290,13 +2287,9 @@
 
               <div class="form-group" style="margin-bottom: 0;">
                 <label class="form-label" for="questionSubject">Mata Pelajaran *</label>
-                ${currentUser.role === 'guru' ? `
-                  <input type="text" id="questionSubject" class="form-input" value="${currentUser.subject}" readonly 
-                         style="background: #f3f4f6; cursor: not-allowed;">
-                ` : `
-                  <select id="questionSubject" class="form-select" required>
-                    <option value="">Pilih Mapel</option>
-                    <option value="Pendidikan Agama dan Budi Pekerti">Pendidikan Agama dan Budi Pekerti</option>
+                <select id="questionSubject" class="form-select" required>
+                  <option value="">Pilih Mapel</option>
+                  <option value="Pendidikan Agama dan Budi Pekerti">Pendidikan Agama dan Budi Pekerti</option>
                   <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
                   <option value="Bahasa Indonesia">Bahasa Indonesia</option>
                   <option value="Matematika">Matematika</option>
@@ -2308,7 +2301,6 @@
                   <option value="Seni Budaya dan Prakarya">Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah">Bahasa Daerah</option>
                 </select>
-                `}
               </div>
 
               <div class="form-group" style="margin-bottom: 0;">
@@ -2419,7 +2411,7 @@
                   </label>
                   <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
                     <input type="radio" name="trueFalseAnswer" value="false" style="cursor: pointer;">
-                    <span style="font-weight: 700; color: #ef4444;">   SALAH</span>
+                    <span style="font-weight: 700; color: #ef4444;">�� SALAH</span>
                   </label>
                 </div>
               </div>
@@ -2456,7 +2448,7 @@
 
                 <div style="background: #fef3c7; padding: 12px; border-radius: 8px; margin-top: 16px; border-left: 4px solid #f59e0b;">
                   <p style="margin: 0; color: #92400e; font-size: 13px; font-weight: 700;">
-                       Poin maksimal = jumlah pasangan × 1 poin per pasangan benar
+                    💡 Poin maksimal = jumlah pasangan × 1 poin per pasangan benar
                   </p>
                 </div>
               </div>
@@ -2558,8 +2550,7 @@
       btn.innerHTML = '<span class="spinner"></span> Menyimpan...';
 
       const type = document.getElementById('questionType').value;
-      const subjectElement = document.getElementById('questionSubject');
-      const subject = subjectElement.tagName === 'INPUT' ? subjectElement.value : subjectElement.value;
+      const subject = document.getElementById('questionSubject').value;
       const classLevel = document.getElementById('questionClass').value;
       const points = parseInt(document.getElementById('questionPoints').value);
       const questionText = document.getElementById('questionText').value.trim();
@@ -2679,7 +2670,7 @@
       modal.innerHTML = `
         <div class="modal-content" style="max-width: 800px;">
           <div class="modal-header">
-            <h2 class="modal-title">    Import Soal Massal (Pilihan Ganda)</h2>
+            <h2 class="modal-title">��� Import Soal Massal (Pilihan Ganda)</h2>
             <button class="modal-close" onclick="this.closest('.modal-overlay').remove()">×</button>
           </div>
 
@@ -2701,7 +2692,7 @@ C. apakah mobil memiliki rodat
 D. besar pajak tahunan mobil
 jawaban C</pre>
             <p style="margin: 12px 0 0; color: #1e40af; font-size: 13px;">
-                        Bisa dengan nomor atau tanpa nomor<br>
+              ��������� Bisa dengan nomor atau tanpa nomor<br>
               ✓ Opsi minimal A-D, bisa sampai E<br>
               ✓ Tulis "jawaban X" di baris terakhir setiap soal
             </p>
@@ -2711,13 +2702,9 @@ jawaban C</pre>
             <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 20px;">
               <div class="form-group" style="margin-bottom: 0;">
                 <label class="form-label" for="bulkSubject">Mata Pelajaran *</label>
-                ${currentUser.role === 'guru' ? `
-                  <input type="text" id="bulkSubject" class="form-input" value="${currentUser.subject}" readonly 
-                         style="background: #f3f4f6; cursor: not-allowed;">
-                ` : `
-                  <select id="bulkSubject" class="form-select" required>
-                    <option value="">Pilih Mapel</option>
-                    <option value="Pendidikan Agama dan Budi Pekerti">Pendidikan Agama dan Budi Pekerti</option>
+                <select id="bulkSubject" class="form-select" required>
+                  <option value="">Pilih Mapel</option>
+                  <option value="Pendidikan Agama dan Budi Pekerti">Pendidikan Agama dan Budi Pekerti</option>
                   <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
                   <option value="Bahasa Indonesia">Bahasa Indonesia</option>
                   <option value="Matematika">Matematika</option>
@@ -2729,7 +2716,6 @@ jawaban C</pre>
                   <option value="Seni Budaya dan Prakarya">Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah">Bahasa Daerah</option>
                 </select>
-                `}
               </div>
 
               <div class="form-group" style="margin-bottom: 0;">
@@ -2781,8 +2767,7 @@ jawaban C</pre>
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span> Mengimport...';
 
-      const subjectElement = document.getElementById('bulkSubject');
-      const subject = subjectElement.tagName === 'INPUT' ? subjectElement.value : subjectElement.value;
+      const subject = document.getElementById('bulkSubject').value;
       const classLevel = document.getElementById('bulkClass').value;
       const points = parseInt(document.getElementById('bulkPoints').value);
       const rawText = document.getElementById('bulkQuestions').value.trim();
@@ -3090,12 +3075,8 @@ jawaban C</pre>
 
               <div class="form-group" style="margin-bottom: 0;">
                 <label class="form-label" for="editQuestionSubject">Mata Pelajaran *</label>
-                ${currentUser.role === 'guru' ? `
-                  <input type="text" id="editQuestionSubject" class="form-input" value="${currentUser.subject}" readonly 
-                         style="background: #f3f4f6; cursor: not-allowed;">
-                ` : `
-                  <select id="editQuestionSubject" class="form-select" required>
-                    <option value="Pendidikan Agama dan Budi Pekerti" ${question.question_subject === 'Pendidikan Agama dan Budi Pekerti' ? 'selected' : ''}>Pendidikan Agama dan Budi Pekerti</option>
+                <select id="editQuestionSubject" class="form-select" required>
+                  <option value="Pendidikan Agama dan Budi Pekerti" ${question.question_subject === 'Pendidikan Agama dan Budi Pekerti' ? 'selected' : ''}>Pendidikan Agama dan Budi Pekerti</option>
                   <option value="Pendidikan Pancasila" ${question.question_subject === 'Pendidikan Pancasila' ? 'selected' : ''}>Pendidikan Pancasila</option>
                   <option value="Bahasa Indonesia" ${question.question_subject === 'Bahasa Indonesia' ? 'selected' : ''}>Bahasa Indonesia</option>
                   <option value="Matematika" ${question.question_subject === 'Matematika' ? 'selected' : ''}>Matematika</option>
@@ -3107,7 +3088,6 @@ jawaban C</pre>
                   <option value="Seni Budaya dan Prakarya" ${question.question_subject === 'Seni Budaya dan Prakarya' ? 'selected' : ''}>Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah" ${question.question_subject === 'Bahasa Daerah' ? 'selected' : ''}>Bahasa Daerah</option>
                 </select>
-                `}
               </div>
 
               <div class="form-group" style="margin-bottom: 0;">
@@ -3204,7 +3184,7 @@ jawaban C</pre>
                       <input type="text" class="form-input edit-pair-right" placeholder="Kolom Kanan ${idx + 1}" required value="${pair.right}">
                       ${idx >= 3 ? `
                         <button type="button" onclick="this.closest('.pair-item').remove()" class="btn btn-danger btn-sm">
-                          🗑   
+                          🗑️
                         </button>
                       ` : '<div style="width: 40px;"></div>'}
                     </div>
@@ -3298,8 +3278,7 @@ jawaban C</pre>
       btn.disabled = true;
       btn.innerHTML = '<span class="spinner"></span> Mengupdate...';
 
-      const subjectElement = document.getElementById('editQuestionSubject');
-      const subject = subjectElement.tagName === 'INPUT' ? subjectElement.value : subjectElement.value;
+      const subject = document.getElementById('editQuestionSubject').value;
       const classLevel = document.getElementById('editQuestionClass').value;
       const points = parseInt(document.getElementById('editQuestionPoints').value);
       const questionText = document.getElementById('editQuestionText').value.trim();
@@ -3423,7 +3402,7 @@ jawaban C</pre>
       modal.className = 'modal-overlay';
       modal.innerHTML = `
         <div class="modal-content" style="max-width: 500px; text-align: center;">
-          <div style="font-size: 64px; margin-bottom: 16px;">⚠    </div>
+          <div style="font-size: 64px; margin-bottom: 16px;">⚠���</div>
           <h3 style="margin: 0 0 12px;">Hapus Soal?</h3>
           <p style="margin: 0 0 24px; color: #6b7280; line-height: 1.6;">
             ${preview}
@@ -3559,7 +3538,7 @@ jawaban C</pre>
           </div>
 
           <div class="stat-card" style="background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%); color: white;">
-            <div class="stat-icon" style="background: rgba(255,255,255,0.2);">  </div>
+            <div class="stat-icon" style="background: rgba(255,255,255,0.2);">��</div>
             <div class="stat-content">
               <p class="stat-label" style="color: rgba(255,255,255,0.9);">Bank Soal</p>
               <p class="stat-value" style="color: white;">${questions.length}</p>
@@ -3603,7 +3582,6 @@ jawaban C</pre>
                   <option value="Seni Budaya dan Prakarya">Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah">Bahasa Daerah</option>
                 </select>
-                `}
               </div>
 
               <div>
@@ -3725,7 +3703,7 @@ jawaban C</pre>
 
                         ${examConfig.use_token ? `
                           <div>
-                            <div style="color: #6b7280; font-size: 12px; margin-bottom: 4px;">        Token</div>
+                            <div style="color: #6b7280; font-size: 12px; margin-bottom: 4px;">������� Token</div>
                             <div style="font-family: monospace; font-weight: 900; color: #1f2937; font-size: 16px;">
                               ${examConfig.token}
                             </div>
@@ -3747,7 +3725,7 @@ jawaban C</pre>
                         </div>
 
                         <div>
-                          <div style="color: #6b7280; font-size: 12px; margin-bottom: 4px;">     Rata-rata</div>
+                          <div style="color: #6b7280; font-size: 12px; margin-bottom: 4px;">���� Rata-rata</div>
                           <div style="font-weight: 700; color: #1f2937;">
                             ${avgScore}
                           </div>
@@ -3756,7 +3734,7 @@ jawaban C</pre>
                     </div>
 
                     <div style="font-size: 12px; color: #9ca3af;">
-                      Dibuat oleh: <strong>${exam.exam_created_by}</strong>    
+                      Dibuat oleh: <strong>${exam.exam_created_by}</strong> �� 
                       ${new Date(exam.created_at).toLocaleDateString('id-ID', { day: '2-digit', month: 'short', year: 'numeric' })}
                     </div>
                   </div>
@@ -3848,7 +3826,6 @@ jawaban C</pre>
                   <option value="Seni Budaya dan Prakarya">Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah">Bahasa Daerah</option>
                 </select>
-                `}
               </div>
 
               <div class="form-group" style="margin-bottom: 0;">
@@ -3886,7 +3863,7 @@ jawaban C</pre>
             </div>
 
             <div style="background: #f9fafb; padding: 20px; border-radius: 12px; margin-bottom: 20px;">
-              <h3 style="margin: 0 0 16px; font-size: 16px; font-weight: 900;">⚙    Pengaturan Ujian</h3>
+              <h3 style="margin: 0 0 16px; font-size: 16px; font-weight: 900;">⚙️ Pengaturan Ujian</h3>
 
               <div class="form-group">
                 <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
@@ -4281,7 +4258,7 @@ jawaban C</pre>
     }
 
     function editExam(examId) {
-      showToast('  ️ Fitur Edit Ujian dalam pengembangan', 'info');
+      showToast('��️ Fitur Edit Ujian dalam pengembangan', 'info');
     }
 
     async function deleteExam(examId) {
@@ -4292,7 +4269,7 @@ jawaban C</pre>
       modal.className = 'modal-overlay';
       modal.innerHTML = `
         <div class="modal-content" style="max-width: 500px; text-align: center;">
-          <div style="font-size: 64px; margin-bottom: 16px;">  ️</div>
+          <div style="font-size: 64px; margin-bottom: 16px;">��️</div>
           <h3 style="margin: 0 0 12px;">Hapus Ujian?</h3>
           <p style="margin: 0 0 8px; color: #1f2937; font-weight: 700; line-height: 1.6;">
             ${exam.exam_title}
@@ -4327,12 +4304,12 @@ jawaban C</pre>
       const result = await window.dataSdk.delete(exam);
 
       if (result.isOk) {
-        showToast('    Ujian berhasil dihapus', 'success');
+        showToast('��� Ujian berhasil dihapus', 'success');
         document.querySelector('.modal-overlay').remove();
       } else {
         showToast('Gagal menghapus ujian', 'error');
         btn.disabled = false;
-        btn.innerHTML = '     ️ Hapus';
+        btn.innerHTML = '�����️ Hapus';
       }
     }
 
@@ -4589,7 +4566,7 @@ jawaban C</pre>
               </div>
 
               <div style="text-align: center;">
-                <div style="font-size: 12px; color: #6b7280; font-weight: 700; margin-bottom: 4px;">   ️ PELANGGARAN</div>
+                <div style="font-size: 12px; color: #6b7280; font-weight: 700; margin-bottom: 4px;">���️ PELANGGARAN</div>
                 <div id="violationCounter" style="font-size: 24px; font-weight: 900; color: #f59e0b; font-family: monospace;">
                   ${examState.violations}
                 </div>
@@ -5080,7 +5057,7 @@ jawaban C</pre>
     }
 
     function showSuccessModal(score, examTitle) {
-      let emoji = '   ';
+      let emoji = '���';
       let message = 'Tetap semangat!';
       let bgColor = '#fee2e2';
       let textColor = '#991b1b';
@@ -5231,7 +5208,7 @@ jawaban C</pre>
                       } else if (result.result_score >= 60) {
                         scoreColor = '#f59e0b';
                         scoreBg = '#fef3c7';
-                        scoreEmoji = '   ';
+                        scoreEmoji = '���';
                       }
 
                       return `
@@ -5305,7 +5282,7 @@ jawaban C</pre>
       content.innerHTML = `
         <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
           <div class="stat-card" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-            <div class="stat-icon" style="background: rgba(255,255,255,0.2);">   </div>
+            <div class="stat-icon" style="background: rgba(255,255,255,0.2);">���</div>
             <div class="stat-content">
               <p class="stat-label" style="color: rgba(255,255,255,0.9);">Total Hasil</p>
               <p class="stat-value" style="color: white;">${results.length}</p>
@@ -5380,7 +5357,6 @@ jawaban C</pre>
                   <option value="Seni Budaya dan Prakarya">Seni Budaya dan Prakarya</option>
                   <option value="Bahasa Daerah">Bahasa Daerah</option>
                 </select>
-                `}
               </div>
 
               <div>
@@ -5498,7 +5474,7 @@ jawaban C</pre>
                       <div style="display: flex; gap: 4px; justify-content: center; flex-wrap: wrap;">
                         <button onclick="viewAnswers('${result.__backendId}')" class="btn btn-info btn-sm" 
                                 title="Lihat Jawaban" style="padding: 6px 12px;">
-                          👁   
+                          👁���
                         </button>
                         <button onclick="resetResult('${result.__backendId}')" class="btn btn-warning btn-sm" 
                                 title="Reset - Izinkan mengikuti tes lagi" style="padding: 6px 12px;">
@@ -6141,7 +6117,7 @@ jawaban C</pre>
         },
         { 
           key: 'violation_warning', 
-          label: '⚠      Gambar Peringatan Pelanggaran', 
+          label: '⚠����� Gambar Peringatan Pelanggaran', 
           description: 'Gambar yang muncul saat siswa melakukan pelanggaran',
           type: 'image',
           preview: true
@@ -6155,7 +6131,7 @@ jawaban C</pre>
         },
         { 
           key: 'exam_info', 
-          label: '   ️ Informasi Ujian', 
+          label: '���️ Informasi Ujian', 
           description: 'Pesan informasi sebelum memulai ujian',
           type: 'text',
           preview: false
@@ -6308,7 +6284,7 @@ jawaban C</pre>
                 <option value="violation_warning">⚠️ Gambar Peringatan Pelanggaran</option>
                 <option value="dashboard_announcement">📢 Pengumuman Dashboard</option>
                 <option value="exam_info">ℹ️ Informasi Ujian</option>
-                <option value="success_message">      Pesan Berhasil Submit</option>
+                <option value="success_message">����� Pesan Berhasil Submit</option>
               </select>
             </div>
 
@@ -6320,7 +6296,7 @@ jawaban C</pre>
                 Batal
               </button>
               <button type="submit" class="btn btn-success" style="flex: 1;" id="saveMessageBtn">
-                   Simpan
+                �� Simpan
               </button>
             </div>
           </form>
@@ -6365,7 +6341,7 @@ jawaban C</pre>
 
             <div class="form-group">
               <label class="form-label" for="messageText">Emoji atau Teks (ditampilkan di tengah)</label>
-              <textarea id="messageText" class="form-textarea" placeholder="Contoh: 🎓 atau    " 
+              <textarea id="messageText" class="form-textarea" placeholder="Contoh: 🎓 atau ���" 
                         style="min-height: 100px; text-align: center; font-size: 48px;"></textarea>
               <small style="color: #6b7280; display: block; margin-top: 8px;">
                 Gunakan emoji besar atau teks pendek yang akan ditampilkan di tengah halaman login
@@ -6491,7 +6467,7 @@ jawaban C</pre>
         } else {
           showToast('Gagal menambahkan pesan', 'error');
           btn.disabled = false;
-          btn.innerHTML = '   Simpan';
+          btn.innerHTML = '�� Simpan';
         }
       }
     }
@@ -6529,7 +6505,7 @@ jawaban C</pre>
                   <label class="form-label" for="editMessageText">Emoji atau Teks (ditampilkan di tengah)</label>
                   <textarea id="editMessageText" class="form-textarea" 
                             style="min-height: 100px; text-align: center; font-size: 48px;"
-                            placeholder="Contoh: 🎓 atau     ">${existingMessage && existingMessage.message_text ? existingMessage.message_text : ''}</textarea>
+                            placeholder="Contoh: 🎓 atau ����">${existingMessage && existingMessage.message_text ? existingMessage.message_text : ''}</textarea>
                   <small style="color: #6b7280; display: block; margin-top: 8px;">
                     Gunakan emoji besar atau teks pendek yang akan ditampilkan di tengah halaman login
                   </small>
@@ -6621,7 +6597,7 @@ jawaban C</pre>
       if (!messageText && !messageImageUrl) {
         showToast('Isi minimal teks atau URL gambar', 'error');
         btn.disabled = false;
-        btn.innerHTML = '   Simpan';
+        btn.innerHTML = '�� Simpan';
         return;
       }
 
@@ -6727,5 +6703,5 @@ jawaban C</pre>
     // Start initialization
     init();
   </script>
- <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a55ec50f06e310b',t:'MTc2NDI5MTU3MS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9a55dfa230e15e2b',t:'MTc2NDI5MTA1Mi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
